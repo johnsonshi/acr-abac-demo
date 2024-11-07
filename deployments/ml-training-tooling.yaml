@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ml-training-tooling
+  labels:
+    app: ml-training-tooling
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ml-training-tooling
+  template:
+    metadata:
+      labels:
+        app: ml-training-tooling
+    spec:
+      containers:
+      - name: ml-training-tooling
+        image: ${ACR_NAME}.azurecr.io/ml/training/tooling:latest
+        ports:
+        - containerPort: 80

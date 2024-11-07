@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: infra-webapp-frontend
+  labels:
+    app: infra-webapp-frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: infra-webapp-frontend
+  template:
+    metadata:
+      labels:
+        app: infra-webapp-frontend
+    spec:
+      containers:
+      - name: infra-webapp-frontend
+        image: ${ACR_NAME}.azurecr.io/infra/webapp/frontend:latest
+        ports:
+        - containerPort: 80

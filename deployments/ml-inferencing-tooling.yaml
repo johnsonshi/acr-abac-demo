@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ml-inferencing-tooling
+  labels:
+    app: ml-inferencing-tooling
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ml-inferencing-tooling
+  template:
+    metadata:
+      labels:
+        app: ml-inferencing-tooling
+    spec:
+      containers:
+      - name: ml-inferencing-tooling
+        image: ${ACR_NAME}.azurecr.io/ml/inferencing/tooling:latest
+        ports:
+        - containerPort: 80

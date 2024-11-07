@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ml-inferencing-infra
+  labels:
+    app: ml-inferencing-infra
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ml-inferencing-infra
+  template:
+    metadata:
+      labels:
+        app: ml-inferencing-infra
+    spec:
+      containers:
+      - name: ml-inferencing-infra
+        image: ${ACR_NAME}.azurecr.io/ml/inferencing/infra:latest
+        ports:
+        - containerPort: 80

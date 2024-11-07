@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ml-inferencing-testing
+  labels:
+    app: ml-inferencing-testing
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ml-inferencing-testing
+  template:
+    metadata:
+      labels:
+        app: ml-inferencing-testing
+    spec:
+      containers:
+      - name: ml-inferencing-testing
+        image: ${ACR_NAME}.azurecr.io/ml/inferencing/testing:latest
+        ports:
+        - containerPort: 80
